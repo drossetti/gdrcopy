@@ -911,9 +911,9 @@ static int gdrdrv_remap_gpu_mem(struct vm_area_struct *vma, unsigned long vaddr,
     } else {
         // by default, vm_page_prot should be set to create cached mappings
     }
-    if (io_remap_pfn_range(vma, vaddr, pfn, size, vma->vm_page_prot)) {
-        gdr_err("error in remap_pfn_range()\n");
-        ret = -EAGAIN;
+    ret = io_remap_pfn_range(vma, vaddr, pfn, size, vma->vm_page_prot);
+    if (ret) {
+        gdr_err("error %d in remap_pfn_range()\n", ret);
         goto out;
     }
 
