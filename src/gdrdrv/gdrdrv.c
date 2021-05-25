@@ -1011,7 +1011,7 @@ static int gdrdrv_mmap(struct file *filp, struct vm_area_struct *vma)
         size_t len;
         int is_wcomb;
 
-        gdr_dbg("range start with p=%d vaddr=%lx page_paddr=%lx\n", p, vaddr, paddr);
+        gdr_err("range start with p=%d vaddr=%lx page_paddr=%lx\n", p, vaddr, paddr);
 
         ++p;
         // check p-1 and p for contiguity
@@ -1023,7 +1023,7 @@ static int gdrdrv_mmap(struct file *filp, struct vm_area_struct *vma)
                 //gdr_dbg("p=%d prev_page_paddr=%lx cur_page_paddr=%lx\n",
                 //        p, prev_page_paddr, cur_page_paddr);
                 if (prev_page_paddr + GPU_PAGE_SIZE != cur_page_paddr) {
-                    gdr_dbg("non-contig p=%d prev_page_paddr=%lx cur_page_paddr=%lx\n",
+                    gdr_err("non-contig p=%d prev_page_paddr=%lx cur_page_paddr=%lx\n",
                             p, prev_page_paddr, cur_page_paddr);
                     break;
                 }
@@ -1046,7 +1046,7 @@ static int gdrdrv_mmap(struct file *filp, struct vm_area_struct *vma)
         }
         ret = gdrdrv_remap_gpu_mem(vma, vaddr, paddr, len, is_wcomb);
         if (ret) {
-            gdr_err("error %d in gdrdrv_remap_gpu_mem\n", ret);
+            gdr_err("error %d in gdrdrv_remap_gpu_mem(vaddr=%lx, len=%zu\n", ret, vaddr, len);
             goto out;
         }
         vaddr += len;
