@@ -565,7 +565,7 @@ static int gdrdrv_pin_buffer(gdr_info_t *info, void __user *_params)
     mr->page_table   = NULL;
     mr->cb_flag      = 0;
 
-    gdr_info("invoking nvidia_p2p_get_pages(va=0x%llx len=%lld p2p_tok=%llx va_tok=%x)\n",
+    gdr_err("invoking nvidia_p2p_get_pages(va=0x%llx len=%lld p2p_tok=%llx va_tok=%x)\n",
              mr->va, mr->mapped_size, mr->p2p_token, mr->va_space);
 
     #ifndef CONFIG_ARM64
@@ -619,9 +619,9 @@ static int gdrdrv_pin_buffer(gdr_info_t *info, void __user *_params)
     }
     {
         int i;
-        gdr_dbg("page table entries: %d\n", page_table->entries);
+        gdr_err("page table entries: %d\n", page_table->entries);
         for (i=0; i<MIN(20,page_table->entries); ++i) {
-            gdr_dbg("page[%d]=0x%016llx%s\n", i, page_table->pages[i]->physical_address, (i>19)?"and counting":"");
+            gdr_err("page[%d]=0x%016llx%s\n", i, page_table->pages[i]->physical_address, (i>19)?"and counting":"");
         }
     }
 
