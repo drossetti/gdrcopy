@@ -1034,7 +1034,7 @@ static int gdrdrv_mmap(struct file *filp, struct vm_area_struct *vma)
         // offset not supported, see check above
         len = MIN(size, GPU_PAGE_SIZE * nentries);
         // phys range is [paddr, paddr+len-1]
-        gdr_dbg("mapping p=%u entries=%d offset=%llx len=%zu vaddr=%lx paddr=%lx\n", 
+        gdr_err("mapping p=%u entries=%d offset=%llx len=%zu vaddr=%lx paddr=%lx\n", 
                 p, nentries, offset, len, vaddr, paddr);
         if (gdr_pfn_is_ram(paddr >> PAGE_SHIFT)) {
             WARN_ON_ONCE(!gdrdrv_cpu_can_cache_gpu_mappings);
