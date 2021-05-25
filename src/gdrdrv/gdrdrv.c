@@ -935,7 +935,7 @@ static int gdrdrv_mmap(struct file *filp, struct vm_area_struct *vma)
     int p = 0;
     unsigned long vaddr;
 
-    gdr_info("mmap filp=0x%px vma=0x%px vm_file=0x%px start=0x%lx size=%zu off=0x%lx\n", filp, vma, vma->vm_file, vma->vm_start, size, vma->vm_pgoff);
+    gdr_err("mmap filp=0x%px vma=0x%px vm_file=0x%px start=0x%lx size=%zu off=0x%lx\n", filp, vma, vma->vm_file, vma->vm_start, size, vma->vm_pgoff);
 
     if (!info) {
         gdr_err("filp contains no info\n");
