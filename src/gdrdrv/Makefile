@@ -26,6 +26,7 @@ kver_major:=$(shell echo $(KERNELRELEASE) | awk -F '.' '// { print $$2;}' )
 
 obj-m := nv-p2p-dummy.o
 obj-m += gdrdrv.o
+obj-m += miao.o
 
 ccflags-y += -I$(NVIDIA_SRC_DIR)
 

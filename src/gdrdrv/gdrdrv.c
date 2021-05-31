@@ -206,7 +206,7 @@ static int info_enabled = 0;
 //-----------------------------------------------------------------------------
 
 MODULE_AUTHOR("drossetti@nvidia.com");
-MODULE_LICENSE("MIT");
+MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("GDRCopy kernel-mode driver");
 MODULE_VERSION(GDRDRV_VERSION_STRING);
 module_param(dbg_enabled, int, 0000);
@@ -1117,6 +1117,19 @@ static int __init gdrdrv_init(void)
 
     if (gdrdrv_cpu_can_cache_gpu_mappings)
         gdr_msg(KERN_INFO, "enabling use of CPU cached mappings\n");
+
+    {
+        void (*fun)(void) = NULL;
+        void miaomiao(void);
+        
+        fun = symbol_get(miaomiao);
+        if (fun) {
+            fun();
+            symbol_put(fun);
+        } else {
+            gdr_err("cannot call miaomiao\n");
+        }
+    }
 
     return 0;
 }
