@@ -1119,15 +1119,15 @@ static int __init gdrdrv_init(void)
         gdr_msg(KERN_INFO, "enabling use of CPU cached mappings\n");
 
     {
-        void (*fun)(void) = NULL;
-        void miaomiao(void);
+        void (*fun)(int) = NULL;
+        void miaomiao(int);
         
         fun = symbol_get(miaomiao);
         if (fun) {
-            fun();
-            symbol_put(fun);
+            fun(10);
+            symbol_put(miaomiao);
         } else {
-            gdr_err("cannot call miaomiao\n");
+            gdr_err("cannot call miaomiao, fun=%p\n", fun);
         }
     }
 

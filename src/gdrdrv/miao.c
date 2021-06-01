@@ -20,10 +20,12 @@ MODULE_LICENSE("MIT");
 MODULE_DESCRIPTION("miao driver");
 MODULE_VERSION("1.0");
 
-void miaomiao(void)
+void miaomiao(int i)
 {
-  printk("Hi, I am miao\n");
+  printk("Hi, I am miao, i=%d\n", i);
 }
+
+EXPORT_SYMBOL(miaomiao);
 
 static int __init miao_init(void)
 {
