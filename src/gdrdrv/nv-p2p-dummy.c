@@ -48,7 +48,7 @@
 #include "nv-p2p.h"
 
 MODULE_AUTHOR("drossetti@nvidia.com");
-MODULE_LICENSE("MIT");
+MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("P2P dummy kernel-mode driver");
 MODULE_VERSION("1.0");
 
